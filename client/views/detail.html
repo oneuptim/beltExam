@@ -1,2 +1,31 @@
-<h1>{{ movie.title }} detail page</h1>
-<p>URL: {{ movie.url }}</p>
+<table class="table table-striped">
+  <h1>Question: {{ polls.title }}</h1>
+  <thead>
+    <th>Survey Option</th>
+    <th>Current Vote Count</th>
+    <th>Action</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ polls.optOne }}</td>
+      <td>{{ polls.likeOne }}</td>
+      <td>VOTE!</td>
+    </tr>
+    <tr>
+      <td>{{ polls.optTwo }}</td>
+      <td>{{ polls.likeTwo }}</td>
+      <td>VOTE!</td>
+    </tr>
+    <tr>
+      <td>{{ polls.optThree }}</td>
+      <td>{{ polls.likeThree }}</td>
+      <td>VOTE!</td>
+    </tr>
+    <tr>
+      <td>{{ polls.optFour }}</td>
+      <td>{{ polls.likeoptFour }}</td>
+      <td>VOTE!</td>
+    </tr>
+
+  </tbody>
+</table>

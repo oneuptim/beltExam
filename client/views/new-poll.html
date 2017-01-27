@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <h2 class="nav"><a href="/#!/polls/dash/{{ user._id }}">Polls</a> | <a href="/#!/">Logout</a></h2>
+  <h1>Put your quetion and options here</h1>
+  <hr>
+  <div class="" ng-repeat="error in errors" ng-if="errors !={}">
+    {{ error.message }}
+  </div>
+  <form>
+    <input class="pollQ" type="text" ng-model="newPoll.title" name="title" value="" placeholder="Enter Question Here">
+    <input type="text" ng-model="newPoll.optOne" name="optOne" value="" placeholder="Enter Option 1"><br>
+      <input type="text" ng-model="newPoll.optTwo" name="optOne" value="" placeholder="Enter Option 2"><br>
+        <input type="text" ng-model="newPoll.optThree" name="optOne" value="" placeholder="Enter Option 3"><br>
+          <input type="text" ng-model="newPoll.optFour" name="optOne" value="" placeholder="Enter Option 4"><br>
+    <button type="button" id="submitBtn" name="button" ng-click="createPoll()">+ Add New Poll</button>
+  </form>
+</div>

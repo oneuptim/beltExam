@@ -17,7 +17,7 @@ meanApp.controller('LoginCtrl', function($scope, $location, UserFactory) {
         $scope.id = $scope.users[x]._id;
         var dupe = true;
         // console.log($scope.id);
-        $location.path('/movies/user/' + $scope.id);
+        $location.path('/polls/dash/' + $scope.id);
       }
     }
     if (!dupe && !blank) {
@@ -26,7 +26,7 @@ meanApp.controller('LoginCtrl', function($scope, $location, UserFactory) {
         // console.log('this is a', user);
 
         $scope.id = user._id;
-        $location.path('/movies/user/' + $scope.id);
+        $location.path('/polls/dash/' + $scope.id);
       });
     }
     else if (blank) {

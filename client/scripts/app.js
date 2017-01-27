@@ -13,7 +13,7 @@
 
 var meanApp = angular.module('meanApp', ['ngRoute']);
   meanApp.config(function ($routeProvider) {
-    console.log('meanApp config reached');
+    console.log('BeltExam App Config reached');
   //   // RestangularProvider.setBaseUrl('http://localhost:8000');
     $routeProvider
       .when('/', {
@@ -21,15 +21,15 @@ var meanApp = angular.module('meanApp', ['ngRoute']);
         controller: 'LoginCtrl',
         // controllerAs: 'main'
       })
-      .when('/movies/user/:id', {
-        templateUrl: 'views/movies.html',
-        controller: 'MoviesCtrl',
-        // controllerAs: 'movies'
+      .when('/polls/dash/:id', {
+        templateUrl: 'views/dashboard.html',
+        controller: 'PollCtrl',
+        // controllerAs: 'Poll'
       })
-      .when('/new', {
-        templateUrl: 'views/new-movie.html',
-        controller: 'NewMovieCtrl',
-        // controllerAs: 'movies'
+      .when('/new/:id', {
+        templateUrl: 'views/new-poll.html',
+        controller: 'NewPollCtrl',
+        // controllerAs: 'Poll'
       })
       .when('/edit/:id', {
         templateUrl: 'views/edit.html',
@@ -42,12 +42,12 @@ var meanApp = angular.module('meanApp', ['ngRoute']);
       .when('/delete/:id', {
         templateUrl: 'views/delete.html',
         controller: 'editMovieCtrl',
-        // controllerAs: 'movies'
+        // controllerAs: 'Poll'
       })
       .when('/favorites', {
         templateUrl: 'views/favorites.html',
         controller: 'FavoritesCtrl',
-        // controllerAs: 'movies'
+        // controllerAs: 'Poll'
       })
       .otherwise({
         redirectTo: '/'
@@ -58,31 +58,33 @@ var meanApp = angular.module('meanApp', ['ngRoute']);
   //                              FACTORIES                                   //
   /////////////////////////////////////////////////////////////////////////////
 
-  meanApp.factory('MoviesFactory', function($http) {
-      console.log('Movies Factory Started');
+  meanApp.factory('PollFactory', function($http) {
+      console.log('Poll Factory Started');
 
       var factory = {};
 
-      factory.jenny = function(callback) {
-        $http.get('/movies').then(function(res) {
+      factory.index = function(callback) {
+        $http.get('/polls').then(function(res) {
           if (callback && typeof callback === "function") {
             callback(res.data);
           }
         });
       };
 
-      factory.create = function(newMovie, callback) {
-        $http.post('/movies', newMovie).then(function(res) {
+      factory.create = function(newPoll, callback) {
+        poll = {title: newPoll.title, optOne: newPoll.optOne, optTwo: newPoll.optTwo, optThree: newPoll.optThree, optFour: newPoll.optFour, date: new Date()};
+        console.log(poll, "This is poll stuff in Poll Factory");
+        $http.post('/polls', poll).then(function(res) {
           // console.log(res, "%%%%%%%%%%%%%%%%%%%%%%%");
           if (callback && typeof callback === "function") {
             callback(res.data);
-            // console.log(res.config, "This is res.config from New Movies Factroy!");
+            // console.log(res.config, "This is res.config from New Poll Factroy!");
           }
         });
       };
 
       factory.show = function(id, callback) {
-          $http.get('/movies/'+id).then(function(res) {
+          $http.get('/polls/'+id).then(function(res) {
             if (callback && typeof callback == 'function') {
               callback(res.data);
             }
@@ -90,7 +92,7 @@ var meanApp = angular.module('meanApp', ['ngRoute']);
         }
 
         factory.update = function(movie, callback) {
-          $http.put('/movies/'+movie._id, movie).then(function(res) {
+          $http.put('/polls/'+movie._id, movie).then(function(res) {
             callback(res.data);
           })
         }
@@ -125,13 +127,13 @@ var meanApp = angular.module('meanApp', ['ngRoute']);
     //   })
     // }
 
-    factory.show = function(id, callback) {
-        $http.get('/users/'+id).then(function(res) {
-          if (callback && typeof callback == 'function') {
-            callback(res.data);
-          }
-        })
-      }
+    // factory.show = function(id, callback) {
+    //     $http.get('/users/'+id).then(function(res) {
+    //       if (callback && typeof callback == 'function') {
+    //         callback(res.data);
+    //       }
+    //     })
+    //   }
 
 
 
@@ -148,7 +150,7 @@ var meanApp = angular.module('meanApp', ['ngRoute']);
         // console.log(res, "%%%%%%%%%%%%%%%%%%%%%%%");
         if (callback && typeof callback === "function") {
           callback(res.data);
-          // console.log(res.config, "This is res.config from New Movies Factroy!");
+          // console.log(res.config, "This is res.config from New Poll Factroy!");
         }
       });
     };
@@ -165,14 +167,14 @@ var meanApp = angular.module('meanApp', ['ngRoute']);
     console.log('MainCtrl Started');
   });
 
-  meanApp.controller('MoviesCtrl', ['$scope', 'MoviesFactory', 'UserFactory', 'FavoritesFactory', '$location', '$routeParams', function($scope, MoviesFactory, UserFactory, FavoritesFactory, $location, $routeParams) {
-    console.log('Movies Ctrl Started');
-    MoviesFactory.jenny(function(data) {
-      $scope.movies = data;
+  meanApp.controller('PollCtrl', ['$scope', 'PollFactory', 'UserFactory', '$location', '$routeParams', function($scope, PollFactory, UserFactory, $location, $routeParams) {
+    console.log('Poll Ctrl Started');
+    PollFactory.index(function(data) {
+      $scope.polls = data;
     });
 
-    MoviesFactory.show(function(data) {
-      $scope.movie = data;
+    PollFactory.show(function(data) {
+      $scope.poll = data;
     });
 
     // UserFactory.show(function(data) {
@@ -193,7 +195,7 @@ var meanApp = angular.module('meanApp', ['ngRoute']);
           if (data.errors) {
             $scope.errors = data.errors;
           } else {
-            $location.url('/movies');
+            $location.url('/polls');
           }
         })
       }
@@ -214,43 +216,44 @@ var meanApp = angular.module('meanApp', ['ngRoute']);
     //     //   $scope.posts = data.posts;
     //     // })
     //     $scope.newFav = {};
-    //     // $location.path('/movies/user/' + $routeParams.userID);
+    //     // $location.path('/Poll/user/' + $routeParams.userID);
     //
     // }
 
 
   }]);
 
-  meanApp.controller('NewMovieCtrl', function($scope, MoviesFactory, $location) {
-    console.log("New movie Ctrl, hit!");
-    $scope.create = function() {
-      MoviesFactory.create($scope.newMovie, function(data){
+  meanApp.controller('NewPollCtrl', ['$scope', 'PollFactory', 'UserFactory', '$location', '$routeParams', function($scope, PollFactory, UserFactory, $location, $routeParams) {
+    console.log("New Poll Ctrl, hit!");
+    $scope.createPoll = function() {
+      PollFactory.create($scope.newPoll, function(data){
+        console.log('Create method triggered in new poll ctrl');
         if (data.errors) {
           $scope.errors = data.errors;
         } else {
-          $location.url('/movies');
+          $location.url('/polls/dash/'+ $routeParams.id);
         }
       })
     }
-  });
+  }]);
 
 
 
-  meanApp.controller('editMovieCtrl', ['$scope', 'MoviesFactory','$location', '$routeParams', function($scope, MoviesFactory, $location, $routeParams) {
-  console.log('Edit Movies Ctrl Started');
+  meanApp.controller('editMovieCtrl', ['$scope', 'PollFactory','$location', '$routeParams', function($scope, PollFactory, $location, $routeParams) {
+  console.log('Edit Polls Ctrl Started');
 
-  MoviesFactory.show($routeParams.id, function(data) {
-    $scope.movie = data;
+  PollFactory.show($routeParams.id, function(data) {
+    $scope.polls = data;
   })
 
   $scope.update = function() {
-   MoviesFactory.update($scope.movie, function(data) {
-     $location.url('/movies');
+   PollFactory.update($scope.movie, function(data) {
+     $location.url('/polls');
    })
   }
 
   $scope.delete = function(movie) {
-    MoviesFactory.delete(movie, function(data) {
+    PollFactory.delete(movie, function(data) {
       console.log("Delete CTRL in frontend");
       $location.url('/');
     })

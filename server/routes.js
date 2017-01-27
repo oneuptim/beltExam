@@ -1,6 +1,5 @@
-var movie = require('./controllers/MovieController.js');
+var poll = require('./controllers/PollController.js');
 var users = require('./controllers/UserController.js');
-var favorite = require('./controllers/FavoritesController.js');
 
 module.exports = function(app) {
   console.log('Hitting routes on server!');
@@ -16,32 +15,24 @@ module.exports = function(app) {
     users.create(req, res);
   });
   // Show all
-  app.get('/movies', function(req, res) {
-    movie.index(req, res);
+  app.get('/polls', function(req, res) {
+    poll.index(req, res);
   })
   // Show one
-  app.get('/movies/:id', function(req, res) {
-    movie.show(req, res);
+  app.get('/polls/:id', function(req, res) {
+    poll.show(req, res);
   })
-  // Add New
-  app.post('/movies', function(req, res) {
-    movie.create(req, res);
+  // Add New Poll
+  app.post('/polls', function(req, res) {
+    poll.create(req, res);
   })
   // Update
-  app.put('/movies/:id', function(req, res) {
-    movie.update(req, res);
+  app.put('/polls/:id', function(req, res) {
+    poll.update(req, res);
   })
   // Delete
   app.delete('/delete/:id', function(req, res) {
-    movie.delete(req, res);
-  })
-  // Add New Favorite
-  app.post('/favorite', function(req, res) {
-    favorite.create(req, res);
-  })
-  // Show all
-  app.get('/favorites', function(req, res) {
-    favorite.index(req, res);
+    poll.delete(req, res);
   })
 
 };

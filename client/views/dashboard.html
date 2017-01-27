@@ -1,0 +1,23 @@
+<h2 class="nav"><a href="/#!"><a href="/#!/">Logout</a></h2>
+<hr>
+<table class="table table-striped">
+  <h1>Hi, {{ user.name }}</h1>
+  <a href="/#!/new/{{ user._id }}">
+  <button id="submitBtn" type="button" name="button">+ Add New Poll</button></a>
+  <input class="searchBox" type="text" ng-model="search" placeholder="Search Polls">
+  <br>
+  <thead>
+    <th>Name</th>
+    <th>Survey Question</th>
+    <th>Date Posted</th>
+    <th>Action</th>
+  </thead>
+  <tbody>
+    <tr ng-repeat="poll in polls | filter : search | orderBy : 'title' ">
+      <td>Poster Name</td>
+      <td><a href="/#!/detail/{{ poll._id }}">{{ poll.title }}</a></td>
+      <td>{{ poll.date }}</td>
+      <td ng-click="deletePoll(poll)">Delete</td>
+    </tr>
+  </tbody>
+</table>

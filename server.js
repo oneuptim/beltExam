@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 mongoose.Promise = global.Promise;
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost/meanapp'); // <== DON'T FORGET TO CHANGE THIS EVERYTIME!!!!!!!!!!!
+mongoose.connect('mongodb://localhost/beltexam'); // <== DON'T FORGET TO CHANGE THIS EVERYTIME!!!!!!!!!!!
 
 // Load the models.
 require(path.join(__dirname, './server/models/index.js'));
@@ -22,7 +22,7 @@ require(path.join(__dirname, './server/models/index.js'));
 require(path.join(__dirname, './server/routes.js'))(app);
 
 app.listen(8000, function(){
-  console.log("Mean App Listening on Port 8000");
+  console.log("BeltExam App Listening on Port 8000");
 });
 // END OF MONGO DATABASE CONNECTION
 

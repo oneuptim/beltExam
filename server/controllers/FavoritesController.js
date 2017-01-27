@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var User  = mongoose.model('User');
-var Movie  = mongoose.model('Movie');
-var Favorite  = mongoose.model('Favorite');
+// var Movie  = mongoose.model('Movie');
+// var Favorite  = mongoose.model('Favorite');
 
 module.exports = {
 ///////////////////////////////////////////////////////////////////////////////
