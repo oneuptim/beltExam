@@ -14,7 +14,7 @@
   </thead>
   <tbody>
     <tr ng-repeat="poll in polls | filter : search | orderBy : 'title' ">
-      <td>Poster Name</td>
+      <td>{{ poll._user.name }}</td>
       <td><a href="/#!/detail/{{ poll._id }}">{{ poll.title }}</a></td>
       <td>{{ poll.date }}</td>
       <td ng-click="deletePoll(poll)">Delete</td>

@@ -8,7 +8,8 @@ module.exports = {
 
 index: function(req, res) {
   console.log("Polls Index in Poll Controller on Server");
-  Poll.find({}, function(err, data) {
+  Poll.find({}, false, true).populate('_user').exec(function (err, data) {
+    console.log(data, "Data from Poll DB");
     if (err) {
       res.json(err);
     } else {
@@ -22,9 +23,9 @@ index: function(req, res) {
 /////////////////////////////////////////////////////////////////////////////
 
 create: function(req, res){
-  console.log("Poll has been added to the database!");
   var poll = new Poll({title: req.body.title, optOne: req.body.optOne, optTwo: req.body.optTwo, optThree: req.body.optThree, optFour: req.body.optFour, _user: req.params.id, date: req.body.date});
-  console.log(poll, "This is the new poll object");
+  console.log(req.params.id, 'Params $$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
+  console.log(poll, "<<<<<<<<<This is the new poll object");
   poll.save(function(err) {
     if (err) {
       res.json(err);

@@ -31,10 +31,6 @@ var meanApp = angular.module('meanApp', ['ngRoute']);
         controller: 'NewPollCtrl',
         // controllerAs: 'Poll'
       })
-      .when('/edit/:id', {
-        templateUrl: 'views/edit.html',
-        controller: 'editMovieCtrl'
-      })
       .when('/detail/:id', {
         templateUrl: 'views/detail.html',
         controller: 'editMovieCtrl'
@@ -42,11 +38,6 @@ var meanApp = angular.module('meanApp', ['ngRoute']);
       .when('/delete/:id', {
         templateUrl: 'views/delete.html',
         controller: 'editMovieCtrl',
-        // controllerAs: 'Poll'
-      })
-      .when('/favorites', {
-        templateUrl: 'views/favorites.html',
-        controller: 'FavoritesCtrl',
         // controllerAs: 'Poll'
       })
       .otherwise({
@@ -72,10 +63,9 @@ var meanApp = angular.module('meanApp', ['ngRoute']);
       };
 
       factory.create = function(newPoll, callback) {
-        poll = {title: newPoll.title, optOne: newPoll.optOne, optTwo: newPoll.optTwo, optThree: newPoll.optThree, optFour: newPoll.optFour, date: new Date()};
+        poll = {title: newPoll.title, optOne: newPoll.optOne, optTwo: newPoll.optTwo, optThree: newPoll.optThree, optFour: newPoll.optFour, _user: newPoll._user, date: new Date()};
         console.log(poll, "This is poll stuff in Poll Factory");
-        $http.post('/polls', poll).then(function(res) {
-          // console.log(res, "%%%%%%%%%%%%%%%%%%%%%%%");
+        $http.post('/polls/' + newPoll._user, poll).then(function(res) {
           if (callback && typeof callback === "function") {
             callback(res.data);
             // console.log(res.config, "This is res.config from New Poll Factroy!");
@@ -187,19 +177,19 @@ var meanApp = angular.module('meanApp', ['ngRoute']);
       $scope.user = data;
     });
 
-    $scope.addFav = function() {
-      FavoritesFactory.create = function() {
-        console.log('add fav create in controller being hit');
-        FavoritesFactory.create($scope.newFav, function(data){
-          console.log($scope.newFav, '**********************');
-          if (data.errors) {
-            $scope.errors = data.errors;
-          } else {
-            $location.url('/polls');
-          }
-        })
-      }
-    }
+    // $scope.addFav = function() {
+    //   FavoritesFactory.create = function() {
+    //     console.log('add fav create in controller being hit');
+    //     FavoritesFactory.create($scope.newFav, function(data){
+    //       console.log($scope.newFav, '**********************');
+    //       if (data.errors) {
+    //         $scope.errors = data.errors;
+    //       } else {
+    //         $location.url('/polls');
+    //       }
+    //     })
+    //   }
+    // }
 
 
     // $scope.addFav = function() {
@@ -226,6 +216,7 @@ var meanApp = angular.module('meanApp', ['ngRoute']);
   meanApp.controller('NewPollCtrl', ['$scope', 'PollFactory', 'UserFactory', '$location', '$routeParams', function($scope, PollFactory, UserFactory, $location, $routeParams) {
     console.log("New Poll Ctrl, hit!");
     $scope.createPoll = function() {
+      $scope.newPoll['_user'] = $routeParams.id
       PollFactory.create($scope.newPoll, function(data){
         console.log('Create method triggered in new poll ctrl');
         if (data.errors) {

@@ -23,7 +23,7 @@ module.exports = function(app) {
     poll.show(req, res);
   })
   // Add New Poll
-  app.post('/polls', function(req, res) {
+  app.post('/polls/:id', function(req, res) {
     poll.create(req, res);
   })
   // Update
