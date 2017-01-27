@@ -1,7 +1,2 @@
 # Mac.
 .DS_STORE
-
-# Node & Bower.
-bower_components
-node_modules
-npm-debug.log
