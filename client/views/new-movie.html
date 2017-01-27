@@ -1,0 +1,10 @@
+<div class="wrapper">
+  <div class="" ng-repeat="error in errors" ng-if="errors !={}">
+    {{ error.message }}
+  </div>
+  <form>
+    <input type="text" ng-model="newMovie.title" name="title" value="" placeholder="Enter Movie Name">
+    <input type="text" ng-model="newMovie.url" name="url" value="" placeholder="Enter Movie URL">
+    <button type="button" id="submitBtn" name="button" ng-click="create()">+ Add New Movie</button>
+  </form>
+</div>

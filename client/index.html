@@ -1,0 +1,22 @@
+<html ng-app='meanApp'>
+<head>
+  <title>Trailify</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src='bower_components/angular/angular.js'></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="scripts/app.js"></script>
+  <script src="scripts/controllers/login.js"></script>
+  <script src="scripts/controllers/user.js"></script>
+  <script src="scripts/factories/UserFactory.js"></script>
+
+  <!-- <script src="js/scripts.js" charset="utf-8"></script> -->
+</head>
+<body>
+  <div class="wrapper">
+    <h2><a href="/#!">Home</a> | <a href="/#!/movies">Movies</a></h2>
+    <hr>
+    <div ng-view="">
+    </div>
+  </div>
+</body>
+</html>

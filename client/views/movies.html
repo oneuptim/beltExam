@@ -1,0 +1,24 @@
+<table class="table table-striped">
+  <h1>Hi, {{ user.name }}</h1>
+  <a href="/#!/new">
+  <button id="submitBtn" type="button" name="button">+ Add New Trailer</button></a>
+  <input class="searchBox" type="text" ng-model="search" placeholder="Search Movies">
+  <br>
+  <thead>
+    <th>Movie Title</th>
+    <th>URL</th>
+    <th>Action</th>
+    <th>Favorite</th>
+    <th>Movie ID</th>
+  </thead>
+  <tbody>
+    <tr ng-repeat="movie in movies | filter : search | orderBy : 'title' ">
+      <td><a href="/#!/detail/{{ movie._id }}">{{ movie.title }}</a></td>
+      <td>{{ movie.url }}</td>
+      <!-- <td><a href="">Edit</a> | <b ng-click="delete(movie)"> Delete</b></td> -->
+      <td><a href="/#!/edit/{{ movie._id }}">Edit</a> | <a href="/#!/delete/{{ movie._id }}">Delete</a></td>
+      <td><button ng-model="newFav.movie" ng-click="addFav(movie)">Fav</button></td>
+      <td>{{ movie._id }}</td>
+    </tr>
+  </tbody>
+</table>
