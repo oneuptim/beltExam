@@ -1,4 +1,5 @@
-<p><a href="/#!/movies">{{ movie.title }}</a> will be permanently deleted.</p>
+
+<p><a href="/#!/polls/dash/{{ polls._user._id }}">{{ polls.title }}</a> will be permanently deleted.</p>
 <h1>Are you sure about this & stuff, bro?</h1>
-<input id="resetBtn" type="submit" name="" value="Delete" ng-click="delete(movie)">
-<a href="/#!/movies"><input id="submitBtn" type="submit" name="" value="Nevermind"></a>
+<input id="resetBtn" type="submit" name="" value="Delete" ng-click="deletePoll(polls)">
+<a href="/#!/polls/dash/{{ polls._user._id }}"><input id="submitBtn" type="submit" name="" value="Nevermind"></a>

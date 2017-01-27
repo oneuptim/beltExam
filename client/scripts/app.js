@@ -87,8 +87,8 @@ var meanApp = angular.module('meanApp', ['ngRoute']);
           })
         }
 
-      factory.delete = function(movie, callback) {
-        $http.delete('/delete/'+movie._id).then(function(res) {
+      factory.delete = function(poll, callback) {
+        $http.delete('/delete/'+ poll._id).then(function(res) {
           console.log("Delete factory in frontend");
             callback(res.data);
         });
@@ -230,7 +230,7 @@ var meanApp = angular.module('meanApp', ['ngRoute']);
 
 
 
-  meanApp.controller('editMovieCtrl', ['$scope', 'PollFactory','$location', '$routeParams', function($scope, PollFactory, $location, $routeParams) {
+  meanApp.controller('editMovieCtrl', ['$scope', 'PollFactory', 'UserFactory', '$location', '$routeParams', function($scope, PollFactory, UserFactory, $location, $routeParams) {
   console.log('Edit Polls Ctrl Started');
 
   PollFactory.show($routeParams.id, function(data) {
@@ -243,8 +243,8 @@ var meanApp = angular.module('meanApp', ['ngRoute']);
    })
   }
 
-  $scope.delete = function(movie) {
-    PollFactory.delete(movie, function(data) {
+  $scope.deletePoll = function(poll) {
+    PollFactory.delete(poll, function(data) {
       console.log("Delete CTRL in frontend");
       $location.url('/');
     })

@@ -17,7 +17,7 @@
       <td>{{ poll._user.name }}</td>
       <td><a href="/#!/detail/{{ poll._id }}">{{ poll.title }}</a></td>
       <td>{{ poll.date }}</td>
-      <td ng-click="deletePoll(poll)">Delete</td>
+      <td><a href="/#!/delete/{{ poll._id }}">Delete</a></td>
     </tr>
   </tbody>
 </table>
