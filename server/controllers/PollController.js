@@ -23,9 +23,9 @@ index: function(req, res) {
 /////////////////////////////////////////////////////////////////////////////
 
 create: function(req, res){
-  var poll = new Poll({title: req.body.title, optOne: req.body.optOne, optTwo: req.body.optTwo, optThree: req.body.optThree, optFour: req.body.optFour, _user: req.params.id, date: req.body.date});
+  var poll = new Poll({title: req.body.title, optOne: req.body.optOne, optTwo: req.body.optTwo, optThree: req.body.optThree, optFour: req.body.optFour, _user: req.params.id, date: req.body.date, likeOne: 0, likeTwo: 0, likeThree: 0, likeFour: 0});
   // console.log(req.params.id, 'Params $$$$$$$$$$$$$$$$$$$$$$$$$$$$$');
-  // console.log(poll, "<<<<<<<<<This is the new poll object");
+  console.log(poll, "<<<<<<<<<This is the new poll object");
   poll.save(function(err) {
     if (err) {
       res.json(err);

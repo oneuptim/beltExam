@@ -238,10 +238,24 @@ var meanApp = angular.module('meanApp', ['ngRoute']);
   })
 
   $scope.update = function() {
-   PollFactory.update($scope.movie, function(data) {
+   PollFactory.update($scope.poll, function(data) {
      $location.url('/polls');
    })
   }
+
+  // $scope.addVote = function(likeID) {
+  //   $scope.likeOne = {id: target_id};
+  //   postFactory.update($scope.post_id, function(data) {
+  //
+  //   })
+
+  $scope.count = 0;
+    var max = $scope.count + 1;
+
+  $scope.increment = function() {
+    if ($scope.count >= max) { return; }
+    $scope.count++;
+  };
 
   $scope.deletePoll = function(poll) {
     PollFactory.delete(poll, function(data) {

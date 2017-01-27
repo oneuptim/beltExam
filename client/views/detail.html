@@ -9,22 +9,27 @@
     <tr>
       <td>{{ polls.optOne }}</td>
       <td>{{ polls.likeOne }}</td>
-      <td>VOTE!</td>
+      <td ng-click="count = count + 1" ng-init="count=0"><button ng-click="addVote()" class="voteBtn" type="button" name="button">Like!</button></td>
+      <!-- <td>{{ count }}</td> -->
     </tr>
     <tr>
       <td>{{ polls.optTwo }}</td>
-      <td>{{ polls.likeTwo }}</td>
-      <td>VOTE!</td>
+      <td>{{ count }}</td>
+      <td ng-click="count = count + 1" ng-init="count=0"><button ng-click="addVote()" class="voteBtn" type="button" name="button">Like!</button></td>
+      <!-- <td>{{ count }}</td> -->
     </tr>
     <tr>
       <td>{{ polls.optThree }}</td>
+      <!-- <td>{{ polls.likeThree }}</td> -->
       <td>{{ polls.likeThree }}</td>
-      <td>VOTE!</td>
+      <!-- <td><button ng-click="addVote()" class="voteBtn" type="button" name="button">Vote!</button></td> -->
+      <td ng-click="count = count + 1" ng-init="count=0"><button ng-click="addVote()" class="voteBtn" type="button" name="button">Like!</button></td>
     </tr>
     <tr>
       <td>{{ polls.optFour }}</td>
-      <td>{{ polls.likeoptFour }}</td>
-      <td>VOTE!</td>
+      <td>{{ polls.likeFour }}</td>
+      <td ng-click="count = count + 1" ng-init="count=0"><button ng-click="addVote()" class="voteBtn" type="button" name="button">Like!</button></td>
+      <!-- <td>{{ count }}</td> -->
     </tr>
 
   </tbody>
