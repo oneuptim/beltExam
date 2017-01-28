@@ -1,4 +1,4 @@
-# beltExam
+# polification
 A simple app built on the MEAN stack in 4.5hrs.
 
 ## Usage ##
