@@ -214,7 +214,7 @@ var meanApp = angular.module('meanApp', ['ngRoute']);
   }]);
 
   meanApp.controller('NewPollCtrl', ['$scope', 'PollFactory', 'UserFactory', '$location', '$routeParams', function($scope, PollFactory, UserFactory, $location, $routeParams) {
-    console.log("New Poll Ctrl, hit!");
+    // console.log("New Poll Ctrl, hit!");
     $scope.createPoll = function() {
       $scope.newPoll['_user'] = $routeParams.id
       PollFactory.create($scope.newPoll, function(data){

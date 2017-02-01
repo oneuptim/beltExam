@@ -22,11 +22,12 @@ meanApp.controller('LoginCtrl', function($scope, $location, UserFactory) {
     }
     if (!dupe && !blank) {
       UserFactory.create($scope.newUser, function(user) {
+        console.log('UserFactory just got hit, daaaaaammmmmmnnnn!!!!');
         // console.log($scope.newUser);
         // console.log('this is a', user);
 
         $scope.id = user._id;
-        $location.path('/polls/dash/' + $scope.id);
+        var x = $location.path('/polls/dash/' + $scope.id);
       });
     }
     else if (blank) {

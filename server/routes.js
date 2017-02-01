@@ -34,5 +34,15 @@ module.exports = function(app) {
   app.delete('/delete/:id', function(req, res) {
     poll.delete(req, res);
   })
+  // QME app
+  // app.get('/qme', function(req, res) {
+  //   poll.index(req, res);
+  // })
+
+  app.post('/qme', function(req, res) {
+    console.log("SLACK Index in Poll Controller on Server", req);
+    poll.slack(req, res);
+  })
+
 
 };

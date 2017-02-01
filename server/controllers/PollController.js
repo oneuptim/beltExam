@@ -115,3 +115,15 @@ Poll.findOne({_id: req.params.id}, function(err, data) {
 },
 
 };
+
+// slack: function(req, res) {
+//   console.log("SLACK Index in Poll Controller on Server", req);
+//   // Poll.find({}, false, true).populate('_user').exec(function (err, data) {
+//     // console.log(data, "Data from Poll DB");
+//   //   if (err) {
+//   //     res.json(err);
+//   //   } else {
+//   //     res.json(data);
+//   //   }
+//   // });
+// },
